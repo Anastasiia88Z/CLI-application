@@ -1,5 +1,5 @@
 {
-  "name": "CLI-application",
+  "name": "cli-application",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -23,6 +23,7 @@
     "nodemon": "^2.0.15"
   },
   "dependencies": {
-    
+    "commander": "^8.3.0",
+    "yargs": "^17.2.1"
   }
 }
