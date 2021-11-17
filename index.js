@@ -1,4 +1,4 @@
-const listContacts = require("./contacts");
+const { listContacts, getContactById, addContact }  = require("./contacts");
 
 const { Command } = require('commander');
 const program = new Command();
@@ -20,13 +20,18 @@ const invokeAction = async ({ action, id, name, email, phone }) => {
       console.table(contacts)
     break;
 
-    case "get":
+    case 'get':
       const contactsById = await getContactById(id);
       if (!contactsById){
         throw new Error(`Product with id=${id} not found`);
       }
       console.table(contactsById);
     break;
+
+    case 'add':
+      const newContact = await addContact(name, email, phone);
+      console.table(newContact);
+      break;
 
     default:
       console.warn('\x1B[31m Unknown action type!');
