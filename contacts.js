@@ -34,6 +34,17 @@ async function getContactById(contactId) {
   }
 }
 
+async function removeContact(contactId) {
+  try{
+    const contacts = await listContacts();
+    const newContactList = contacts.filter(contact => contact.id !== Number(contactId))
+    await fs.writeFile(contactsPath, JSON.stringify(newContactList, null, 2))
+    return newContactList;
+  }catch(error){
+    console.log(error.message)
+  }
+}
+
 async function addContact(name, email, phone) {
   const newContact = { id:uuidv4(), name, email, phone}
   try{
@@ -48,9 +59,9 @@ async function addContact(name, email, phone) {
 }
 
 
-
 module.exports = {
   listContacts,
   getContactById,
   addContact,
+  removeContact,
 }
